@@ -331,6 +331,7 @@ std::vector<double> weibullCore::transform ( int nprm, double a, double b ) cons
 polyCore::polyCore( const PsiData* data, const int sigmoid, const double alpha )
 {
 	double meanx (0),varx(0);
+	double xmax(-1e5), xmin(1e5),I;
 	unsigned int i;
 
 	for (i=0; i<data->getNblocks(); i++) {
@@ -339,13 +340,19 @@ polyCore::polyCore( const PsiData* data, const int sigmoid, const double alpha )
 	meanx /= data->getNblocks();
 
 	for (i=0; i<data->getNblocks(); i++) {
-		varx += pow( data->getIntensity(i)-meanx, 2 );
+		I = data->getIntensity(i);
+		varx += pow( I-meanx, 2 );
+		if (I > xmax) xmax=I;
+		if (I < xmin) xmin=I;
 	}
 	varx /= data->getNblocks();
 	varx = sqrt(varx);
 
 	x1 = meanx+varx;
 	x2 = meanx-varx;
+	// Clip
+	x1 = (x1>xmax ? xmax : x1 );
+	x2 = (x2<xmin ? xmin : x2 );
 }
 
 double polyCore::dg ( double x, const std::vector<double>& prm, int i ) const
