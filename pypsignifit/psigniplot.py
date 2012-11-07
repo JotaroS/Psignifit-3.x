@@ -1022,7 +1022,7 @@ def plotMultiplePMFs ( *InferenceObjects, **kwargs ):
 
     for pmf in InferenceObjects:
         l,d = plotPMF ( pmf, showaxes=False, showdesc=False, ax=ax )[:2]
-        pmflines.append(l)
+        pmflines += l
         pmfdata.append(d)
         pmflabels.append(pmf.label)
         if kwargs.setdefault ( "ci", False ):
