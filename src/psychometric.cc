@@ -97,25 +97,92 @@ double PsiPsychometric::negllikeli ( const std::vector<double>& prm, const PsiDa
 	return l;
 }
 
+double expected_ll ( const std::vector<double>& x,
+		const std::vector<double>& p,
+		const std::vector<int>&n,
+		const std::vector<double>& pred )
+		 {
+	unsigned int i;
+	double l(0);
+	for (i=0; i<p.size(); i++) {
+		if ( pred[i]>0 )
+			l -= n[i]*p[i]*log(pred[i]);
+		else
+			l += 1e10;
+		if ( pred[i]<1 )
+			l -= n[i]*(1-p[i])*log1p(-pred[i]);
+		else
+			l += 1e10;
+	}
+	return l;
+}
+
 double PsiPsychometric::leastfavourable ( const std::vector<double>& prm, const PsiData* data, double cut, bool threshold ) const
 {
 	if (!threshold) throw NotImplementedError();  // So far we only have this for the threshold
 
 	std::vector<double> delta (prm.size(),0), du(prm.size(),0);
-	Matrix * I;
-	double ythres;
+	Matrix * I = new Matrix (prm.size(),prm.size());
+	double ythres,dthres;
 	double rz,nz,xz,pz,fac1;
-	double l_LF(0);
-	double s;
-	unsigned int i,z;
+	double l_LF(0),ll;
+	double s, h(1e-5),u;
+	unsigned int i,j,z;
+	std::vector<double> th (prm);
+	std::vector<double> x (data->getIntensities());
+	std::vector<double> p (x.size());
+	std::vector<double> pr (x.size());
+	std::vector<int> n (data->getNtrials());
+	PsiData*localdata;
 
+	// Determine u and I numerically
+	ythres = Sigmoid->inv(cut);
+	u      = Core->inv(ythres,th);
+	for ( i=0; i< prm.size(); i++ ) {
+		th[i] += h;
+		du[i] = Core->inv(ythres, th);
+		th[i] -= h;
+		du[i] /= h;
+	}
+	for ( i=0; i<x.size(); i++ ) {
+		p[i] = evaluate ( x[i], th );
+	}
+	for ( j=0; j<th.size(); j++ ) {
+		th[j] += h;
+		for ( i=0; i<x.size(); i++ ) {
+			pr[i] = evaluate ( x[i], th );
+		}
+		th[j] -= h;
+
+		ll = expected_ll ( x, p, n, pr );
+		for ( i=0; i<th.size(); i++ ) {
+			(*I)(i,j) += ll;
+			(*I)(j,i) += ll;
+		}
+	}
+	ll = expected_ll ( x, p, n, p );
+	for ( j=0; j<th.size(); j++ ) {
+		for ( i=0; i<th.size(); i++ ) {
+			(*I)(i,j) -= 2*ll;
+			(*I)(i,j) /= h*h;
+		}
+	}
+	/*
 	// Fill u
 	ythres = Sigmoid->inv(cut);
+	dthres = (Sigmoid->inv(cut+.0001)-Sigmoid->inv(cut-.0001))/.0002;
+	std::cerr << dthres << "\n";
 	du[0] = Core->dinv(ythres,prm,0);
 	du[1] = Core->dinv(ythres,prm,1);
 
 	// Determine 2nd derivative
 	I = ddnegllikeli ( prm, data );
+	std::cerr << "M = [\n";
+	std::cerr << "  (" << I->operator()(0,0) << ", " << I->operator()(0,1) << ", " << I->operator()(0,2) << "),\n";
+	std::cerr << "  (" << I->operator()(1,0) << ", " << I->operator()(1,1) << ", " << I->operator()(1,2) << "),\n";
+	std::cerr << "  (" << I->operator()(2,0) << ", " << I->operator()(2,1) << ", " << I->operator()(2,2) << ")]\n";
+	std::cerr << "du = [" << du[0] << ", " << du[1] << ", 0]\n";
+	*/
 
 	// Now we have to solve I*delta = du for delta
 	try {
