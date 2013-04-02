@@ -26,7 +26,7 @@ need to pay for Xcode 4. If you are not running Snow Leopard, you will have to
 find an older version of Xcode such as 3.1.
 
 For OSX Lion Xcode 4 is free, too. Further information can be found `here
-<http://jessenoller.com/2011/07/30/quick-pythondeveloper-tips-for-osx-lion/>`.
+<http://jessenoller.com/2011/07/30/quick-pythondeveloper-tips-for-osx-lion/>`_.
 
 You will want to download the most recent version of psignifit from:
 `<http://sourceforge.net/.projects/psignifit/files/>`_. You will want the
