@@ -11,7 +11,9 @@ version of Psignifit from a source download.
     Debian *and* Ubuntu
     <http://neuro.debian.net/pkgs/python-pypsignifit.html>`_. If you have
     configured the NeuroDebian repositories correctly, the following command
-    will install Psignifit3 for Python::
+    will install Psignifit3 for Python:
+
+    .. code-block:: console
 
         $ sudo apt-get install python-pypsignifit
 
@@ -46,10 +48,12 @@ You will want to download the most recent version of psignifit from:
 `<http://sourceforge.net/projects/psignifit/files/>`_. You will want the
 ``zip`` file, for example ``psignifit_3.0_beta.20120207.1.zip``.
 
-Extract the file, and enter the directory by typing::
+Extract the file, and enter the directory by typing:
 
-    unzip psignifit_3.0_beta.<date of the snapshot>.1.zip
-    cd psignifit_3.0_beta.<date of the snapshot>.1
+.. code-block:: console
+
+    $ unzip psignifit_3.0_beta.<date of the snapshot>.1.zip
+    $ cd psignifit_3.0_beta.<date of the snapshot>.1
 
 replacing ``<date of the snapshot>`` by the date string in the file
 name.
@@ -73,16 +77,20 @@ If  you additionally wish to install the Python version, you must install:
 * ``python-nose``
 * ``swig``
 
-In order to check whether or not you have the packages already installed, type::
+In order to check whether or not you have the packages already installed, type:
 
-    aptitude search make gcc python python-dev\
+.. code-block:: console
+
+    $ aptitude search make gcc python python-dev \
         python-numpy python-scipy python-matplotlib python-nose swig
 
 Packages that are installed on your machine are listed with a leading ``<i>``
 
-In order to install missing packages, type::
+In order to install missing packages, type:
 
-    sudo aptitude install make gcc python python-dev\
+.. code-block:: console
+
+    $ sudo aptitude install make gcc python python-dev \
         python-numpy python-scipy python-matplotlib python-nose
 
 If you are using a different Linux distribution, please refer to the
@@ -95,9 +103,11 @@ Installing Psignifit for Python (python-psignifit)
 System-wide installation
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Installing system wide is simple, type::
+Installing system wide is simple, type:
 
-    make install
+.. code-block:: console
+
+    $ make install
 
 as ``root`` and everything will be installed to the right place.
 
@@ -106,10 +116,12 @@ Install into a Custom Location
 
 If you do not have root privileges, you can use the ``DESTDIR`` variable to
 install into an alternative location, for example the directory
-``psignifit-install`` in your home-directory::
+``psignifit-install`` in your home-directory:
 
-    mkdir $HOME/psignifit-install
-    make DESTDIR=$HOME/psignifit-install install
+.. code-block:: console
+
+    $ mkdir $HOME/psignifit-install
+    $ make DESTDIR=$HOME/psignifit-install install
 
 The first command first creates the directory ``$HOME/psignifit-install``
 where ``$HOME`` is automatically replaced by the name of your own
@@ -117,23 +129,30 @@ home-directory.  The second command will install Psignifit into that directory.
 
 To use psignifit from, you will also have to set the ``$PYTHONPATH`` and
 ``$LD_LIBRARY_PATH`` environment variables. Either invoke the Python
-interpreter from the command line by typing::
+interpreter from the command line by typing:
 
-   PYTHONPATH=psignifit-install/lib/python/ LD_LIBRARY_PATH=psignifit-install/usr/lib/ ipython
+.. code-block:: console
+
+   $ PYTHONPATH=psignifit-install/lib/python/ LD_LIBRARY_PATH=psignifit-install/usr/lib/ ipython
 
 Or, you set the variables in your ``.bashrc`` (or equivalent) file
-by adding the line::
+by adding the line:
 
-   export PYTHONPATH=psignifit-install/lib/python/
-   export LD_LIBRARY_PATH=psignifit-install/usr/lib/
+.. code-block:: console
+
+   $ export PYTHONPATH=psignifit-install/lib/python/
+   $ export LD_LIBRARY_PATH=psignifit-install/usr/lib/
 
 Testing your Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Open a Python interpreter and type::
+Open a Python interpreter and type:
 
-    import pypsignifit
-    pypsignifit.version
+.. code-block:: pycon
+
+    >>> import pypsignifit
+    >>> pypsignifit.version
+    ...
 
 If you can see a version string, such as ``snap-2011-10-28-59-gda5adc6`` you
 installation was probably successful.
@@ -143,9 +162,12 @@ Installing the Command Line Interface (cli)
 
 System-wide installation
 ~~~~~~~~~~~~~~~~~~~~~~~~
-Installing system wide is simple, type::
+Installing system wide is simple, type:
 
-    make cli-install
+
+.. code-block:: console
+
+    $ make cli-install
 
 as ``root`` and everything will be installed to the right place.
 
@@ -153,19 +175,23 @@ Install into a Custom Location
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 If you do not have root privileges, you can use the ``DESTDIR`` variable to
 install into an alternative location, for example the directory
-``psignifit-install`` in your home-directory::
+``psignifit-install`` in your home-directory:
 
-    mkdir $HOME/psignifit-install
-    make DESTDIR=$HOME/psignifit-install cli-install
+.. code-block:: console
+
+    $ mkdir $HOME/psignifit-install
+    $ make DESTDIR=$HOME/psignifit-install cli-install
 
 The first command first creates the directory ``$HOME/psignifit-install``
 where ``$HOME`` is automatically replaced by the name of your own
 home-directory.  The second command will install Psignifit into that directory.
 
 Additionally you must add the installation directory to you ``$PATH``, by
-typing::
+typing:
 
-    export PATH=$PATH:$HOME/psignifit-install/usr/bin
+.. code-block:: console
+
+    $ export PATH=$PATH:$HOME/psignifit-install/usr/bin
 
 Or, for a more permanent solution and the above line to ``.bashrc`` (or
 equivalent) file.
@@ -173,12 +199,14 @@ equivalent) file.
 Testing your Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Now, you should be able to call::
+Now, you should be able to call:
 
-    psignifit-mcmc -h
-    psignifit-diagnostics -h
-    psignifit-bootstrap -h
-    psignifit-mapestimate -h
+.. code-block:: console
+
+    $ psignifit-mcmc -h
+    $ psignifit-diagnostics -h
+    $ psignifit-bootstrap -h
+    $ psignifit-mapestimate -h
 
 And see some usage messages after each call.
 
@@ -192,9 +220,11 @@ packages:
 * ``python-sphinx``
 * ``doxygen``
 
-And then do::
+And then do:
 
-    make doc
+.. code-block:: console
+
+    $ make doc
 
 The documentation can be found in ``doc-html/``. Point your browser at
 ``doc-html/index.html`` to begin.
