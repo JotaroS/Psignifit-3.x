@@ -129,9 +129,11 @@ Git-Repositories
 We use `Git <http://git-scm.com/>`_ for version control. Our main repository is
 hosted at `Sourceforge <http://sourceforge.net/>`_ as `Psignifit
 <http://sourceforge.net/projects/psignifit/>`_. Clone the repository
-with the following command ::
+with the following command :
 
-    git clone git://psignifit.git.sourceforge.net/gitroot/psignifit/psignifit
+.. code-block:: console
+
+    $ git clone git://psignifit.git.sourceforge.net/gitroot/psignifit/psignifit
 
 You can also `browse the Sourceforge repository online
 <http://psignifit.git.sourceforge.net/git/gitweb.cgi?p=psignifit/psignifit;a=summary>`_.
@@ -209,20 +211,26 @@ Merging
 .......
 
 For easy tracking of what changes were absorbed during merge, we advise you to
-enable merge summary within git::
+enable merge summary within git:
 
-    git-config merge.summary true
+.. code-block:: console
+
+    $ git-config merge.summary true
 
 Execute without installation
 ----------------------------
 
 Since it is tedious to install ``pypsignifit`` during development. We provide a
 so called in-place compilation. To compile the ``swignifit`` interface without
-installation simply type::
+installation simply type:
 
-    make
+.. code-block:: console
 
-You can then run::
+    $ make
+
+You can then run:
+
+.. code-block:: pycon
 
     >>> import pypsignifit as psi
 
@@ -244,9 +252,11 @@ bugfixes are available.
 Development Snapshots
 .....................
 
-Development snapshots are made on a regular basis. They are invoked with::
+Development snapshots are made on a regular basis. They are invoked with:
 
-    make dist-upload-archives
+.. code-block:: console
+
+    $ make dist-upload-archives
 
 This will create all the required zip files and windows installers, tag the git
 repository, and upload the files and tags to sourceforge.
