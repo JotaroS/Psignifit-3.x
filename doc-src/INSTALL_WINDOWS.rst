@@ -26,9 +26,10 @@ you uncheck this box!
 Testing your installation
 -------------------------
 
-To check whether your installation has been successful and pypsignifit is working properly, you can call::
+To check whether your installation has been successful and pypsignifit is working properly, you can call:
 
-    make test
+.. code-block:: pycon
 
-This will call the standard test suite for psignifit.
-
+    >>> import pypsignifit
+    >>> pypsignifit.version
+    ...
