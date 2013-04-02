@@ -94,6 +94,24 @@ We are very grateful to the following people, who have contributed to Psignifit3
 * Katharina Maria Zeiner
 * Tiziano Zito
 
+*****************************************
+Conventions used throughout this Document
+*****************************************
+
+Commands to be entered into the shell prompt (e.g. ``bash``) are prefixed
+with the ``$`` character, for example:
+
+.. code-block:: console
+
+   $ make install
+
+Commands to be entered into the python interpreter (e.g. ``ipython``) will be
+prefixed with the ``>>>`` characters, for example:
+
+.. code-block:: pycon
+
+   >>> import pypsignifit
+
 **************
 How to install
 **************
