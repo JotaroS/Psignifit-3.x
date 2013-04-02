@@ -8,15 +8,19 @@ The easiest way to use psignifit is to use the `Enthought Python Distribution
 <http://www.enthought.com/products/epd.php>`_.
 
 You will also need gcc. You can check whether your machine already has gcc
-installed by typing::
+installed by typing:
 
->>> which gcc
+.. code-block:: console
 
-If this gives you the output::
+    $ which gcc
 
-	gcc not found
+If this gives you the output:
 
-you have to download gcc through the Apple Developer Tools. Register for a
+.. code-block:: sh
+
+    gcc not found
+
+... you have to download gcc through the Apple Developer Tools. Register for a
 developer account (you can use your normal apple account for this and it's
 free, you don't have to join the developer program) which will allow you to
 access the developer tools where you want to download Xcode (this is a very
@@ -32,22 +36,28 @@ You will want to download the most recent version of psignifit from:
 `<http://sourceforge.net/.projects/psignifit/files/>`_. You will want the
 ``zip`` file, for example ``psignifit_3.0_beta.20120207.1.zip``.
 
-Extract the file, and enter the directory by typing::
+Extract the file, and enter the directory by typing:
 
-    unzip psignifit_3.0_beta.<date of the snapshot>.1.zip
-    cd psignifit_3.0_beta.<date of the snapshot>.1
+.. code-block:: console
+
+    $ unzip psignifit_3.0_beta.<date of the snapshot>.1.zip
+    $ cd psignifit_3.0_beta.<date of the snapshot>.1
 
 replacing ``<date of the snapshot>`` by the date string in the file
 name.
 
-Now simply run::
+Now simply run:
 
-    make install
+.. code-block:: console
 
-Open a Python interpreter and type::
+    $ make install
 
-    import pypsignifit
-    pypsignifit.version
+Open a Python interpreter and type:
+
+.. code-block:: pycon
+
+    >>> import pypsignifit
+    >>> pypsignifit.version
 
 If you can see a version string, such as ``snap-2011-10-28-59-gda5adc6`` you
 installation was probably successful.
@@ -61,29 +71,37 @@ file to a folder in your home directory. Navigate into the folder.  You have
 two installation options. By default, the command line interface will be
 installed to a folder called ``bin`` in your home directory. You can change
 this behavior by editing the ``Makefile``. At the beginning of the
-``Makefile``, you find a line::
+``Makefile``, you find a line:
+
+.. code-block:: sh
 
     CLI_INSTALL=$(HOME)/bin
 
 replace this by e.g. ``/usr/bin/`` for system wide installation.
 
-Once you have the Makefile in your desired shape type::
+Once you have the Makefile in your desired shape type:
 
-    make cli-install
+.. code-block:: console
+
+    $ make cli-install
 
 If the installation directory is not on your system search path, you may have
-to add it.  To do so, add::
+to add it.  To do so, add:
+
+.. code-block:: sh
 
     export PATH=$PATH:$HOME/bin
 
 to your ``.bashrc`` (if you use bash). If you use zsh, the same line should be
 in your ``.zshrc.local`` file.
 
-Now, you should be able to call::
+Now, you should be able to call:
 
-    psignifit-mcmc -h
-    psignifit-diagnostics -h
-    psignifit-bootstrap -h
-    psignifit-mapestimate -h
+.. code-block:: console
+
+    $ psignifit-mcmc -h
+    $ psignifit-diagnostics -h
+    $ psignifit-bootstrap -h
+    $ psignifit-mapestimate -h
 
 And see some usage messages after each call.
