@@ -11,7 +11,9 @@ the ideas that are implemented here can be found in the paper by [Kuss_et_al_200
 
 Getting started
 ===============
-To get you started with pypsignifit, open a Python interpreter and type the following::
+To get you started with pypsignifit, open a Python interpreter and type the following:
+
+.. code-block:: pycon
 
     >>> import pypsignifit as psi
     >>> print psi.__doc__
@@ -25,11 +27,12 @@ To get you started with pypsignifit, open a Python interpreter and type the foll
 
     All main classes are documented using docstrings. In ipython you can acces them
     using the '?' operator:
+
     >>> import pypsignifit as psi
     >>> psi.BayesInference?
-    [...]
+    ...
     >>> psi.BootstrapInference?
-    [...]
+    ...
 
     Inference Classes
     -----------------
@@ -95,10 +98,12 @@ get help and documentation about one of these functions, you can use the online
 Python help by typing ``help( <object_name> )`` or using the ``?`` operator in
 ipython. For instance:
 
->>> help ( psi.BayesInference )
-[...]
->>> psi.BayesInference?
-[...]
+.. code-block:: pycon
+
+    >>> help ( psi.BayesInference )
+    ...
+    >>> psi.BayesInference?
+    ...
 
 will show you the documentation of the ``BayesInference`` object.
 
@@ -113,14 +118,18 @@ will show you the documentation of the ``BayesInference`` object.
 If you want to obtain the version identifier (for inclusion in support requests
 and bug reports), type:
 
->>> psi.version
-'snap-2011-05-17'
+.. code-block:: pycon
+
+    >>> psi.version
+    'snap-2011-05-17'
 
 Experimental scenario and data format
 =====================================
 The data [1]_ that will be used in the following tutorials have been gathered in a 2-alternative forced-choice discrimination experiment. Observers had to discriminate between two simultaneously presented stimuli. One of them  was the original (standard) and the other one was a comparison of five different stimulus intensities which were all larger than the standard. Different comparison intensities were presented in different experimental blocks (num_of_block = 5). One block contained 50 trials (num_of_trials = 50), 25 of which contained the original and the other 25 contained one of the five different stimulus intensities. Data for all stimulus intensities were repeatedly gathered in three sessions (num_of_sess = 3). Different experimental designs are described in detail in the section `specifying your experimental design <http://psignifit.sourceforge.net/MODELSPECIFICATION.html#specifiing-the-experimental-design>`_.
 
 We will now create our example data set for which we want to estimate a psychometric function. The data format should be a numpy array consisting of the following three columns: stimulus intensities, relative/absolute frequencies of correct (or 'yes') responses, number of observations per stimulus intensity:
+
+.. code-block:: pycon
 
     >>> import numpy as np # numpy module required
     >>> num_of_sess   = 3  # experimental parameters
