@@ -20,10 +20,12 @@ You will want to download the most recent version of psignifit from:
 `<http://sourceforge.net/.projects/psignifit/files/>`_. You will want the
 ``zip`` file, for example ``psignifit3.0_beta_28-10-2011.zip``.
 
-Extract the file, and enter the directory by typing::
+Extract the file, and enter the directory by typing:
 
-    unzip psignifit3.0_beta_<date of the snapshot>.zip
-    cd psignifit3.0_beta_<date of the snapshot>
+.. code-block:: console
+
+    $ unzip psignifit3.0_beta_<date of the snapshot>.zip
+    $ cd psignifit3.0_beta_<date of the snapshot>
 
 replacing ``<date of the snapshot>`` by the date string in the file
 name.
