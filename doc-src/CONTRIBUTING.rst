@@ -133,10 +133,10 @@ with the following command :
 
 .. code-block:: console
 
-    $ git clone git://psignifit.git.sourceforge.net/gitroot/psignifit/psignifit
+    $ git clone git://git.code.sf.net/p/psignifit/code psignifit
 
 You can also `browse the Sourceforge repository online
-<http://psignifit.git.sourceforge.net/git/gitweb.cgi?p=psignifit/psignifit;a=summary>`_.
+<https://sourceforge.net/p/psignifit/code/ci/master/tree/>`_.
 
 We also provide a alternative repository on `Github <https://github.com/>`_:
 `https://github.com/esc/Psignifit-3.x <https://github.com/esc/Psignifit-3.x>`_.
