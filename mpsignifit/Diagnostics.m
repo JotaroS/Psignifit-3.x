@@ -123,6 +123,7 @@ if verbose
 end
 
 [status,output] = system ( cmd );
+output = psistriperrors(output); % Strip the stuff that matlab writes
 eval ( output );
 
 results.call = 'diagnostics';

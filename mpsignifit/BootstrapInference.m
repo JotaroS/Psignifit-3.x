@@ -181,6 +181,7 @@ end
 
 % Do the real work
 [status,output] = system ( cmd );
+output = psistriperrors ( output ); % Strip matlab ssytem problems
 eval ( output );
 
 % Store paradigm

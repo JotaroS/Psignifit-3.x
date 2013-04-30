@@ -217,6 +217,7 @@ end
 
 % Do the real work
 [status,output] = system ( cmd );
+output = psistriperrors(output); % Strip the stuff that matlab writes
 eval ( output );
 
 % Store paradigm
