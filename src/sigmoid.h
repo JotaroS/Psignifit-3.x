@@ -38,8 +38,12 @@ class PsiId : public PsiSigmoid
 		double ddf ( double x ) const { return 0; }
 		double inv ( double x ) const { return x; }
 		int getcode ( void ) const { return 6; }
-		PsiSigmoid * clone ( void ) const { return new PsiId(*this); }
-		static std::string getDescriptor ( void ) { return "id"; }
+	PsiSigmoid * clone ( void ) const {
+		return new PsiId(*this);
+	}
+	static std::string getDescriptor ( void ) {
+		return "id";
+	}
 };
 
 /** \brief logistic function
@@ -56,12 +60,12 @@ class PsiLogistic : public PsiSigmoid
 		double ddf ( double x ) const;               ///< second derivative of the sigmoid
 		double inv ( double p ) const { return log(p/(1-p)); }  ///< inverse of the sigmoid
 		int getcode ( void ) const { return 1; }     ///< return the sigmoid identifier
-        PsiSigmoid * clone ( void ) const {
-            return new PsiLogistic(*this);
+	PsiSigmoid * clone ( void ) const {
+		return new PsiLogistic(*this);
         }
-        static std::string getDescriptor ( void ) {
-            return "logistic";
-        }
+	static std::string getDescriptor ( void ) {
+		return "logistic";
+	}
 };
 
 /** \brief gaussian cdf function
@@ -78,12 +82,12 @@ class PsiGauss : public PsiSigmoid
 		double ddf ( double x ) const;                 ///< second derivative of the sigmoid at x
 		double inv ( double p ) const;                 ///< inverse of the sigmoid
 		int getcode ( void ) const { return 2; }       ///< return the sigmoid identifier
-        PsiSigmoid * clone (void ) const {
-            return new PsiGauss(*this);
-        }
-        static std::string getDescriptor ( void ) {
-            return "gauss";
-        }
+	PsiSigmoid * clone (void ) const {
+		return new PsiGauss(*this);
+	}
+	static std::string getDescriptor ( void ) {
+		return "gauss";
+	}
 };
 
 /** \brief left-skewed gumbel cdf
@@ -100,12 +104,12 @@ class PsiGumbelL : public PsiSigmoid
 		double ddf ( double x ) const;              ///< returns the 2nd derivative of the gumbel cdf at position x
 		double inv ( double p ) const;              ///< returns the inverse of the gumbel cdf at position p
 		int getcode ( void ) const { return 3; }    ///< return the sigmoid identifier
-        PsiSigmoid * clone ( void ) const {
-            return new PsiGumbelL(*this);
-        }
-        static std::string getDescriptor ( void ) {
-            return "gumbel_l";
-        }
+	PsiSigmoid * clone ( void ) const {
+		return new PsiGumbelL(*this);
+	}
+	static std::string getDescriptor ( void ) {
+		return "gumbel_l";
+	}
 };
 
 /** \brief right-skewed gumbel cdf
@@ -122,12 +126,12 @@ class PsiGumbelR : public PsiSigmoid
 		double ddf ( double x ) const;             ///< returns the 2nd derivative of the right skewed gumbel cdf at position x
 		double inv ( double p ) const;             ///< returns the inverse of the right skewed gumbel cdf at position p
 		int getcode ( void ) const { return 6; }   ///< return the sigmoid identifier
-        PsiSigmoid * clone ( void ) const {
-            return new PsiGumbelR(*this);
-        }
-        static std::string getDescriptor ( void ) {
-            return "gumbel_r";
-        }
+	PsiSigmoid * clone ( void ) const {
+		return new PsiGumbelR(*this);
+	}
+	static std::string getDescriptor ( void ) {
+		return "gumbel_r";
+	}
 };
 
 /** \brief cauchy cdf
@@ -137,19 +141,19 @@ class PsiGumbelR : public PsiSigmoid
 class PsiCauchy : public PsiSigmoid
 {
 	public:
-        PsiCauchy( void ) {}                 ///< constructor
-        PsiCauchy( const PsiCauchy& oiginal) {} ///< copy constructor
+		PsiCauchy( void ) {}                 ///< constructor
+		PsiCauchy( const PsiCauchy& oiginal) {} ///< copy constructor
 		double f   ( double x ) const;             ///< returns the value of the cauchy cdf at position x
 		double df  ( double x ) const;             ///< returns the derivative of the cauchy cdf at position x
 		double ddf ( double x ) const;             ///< returns the 2nd derivative of the cauchy cdf at position x
 		double inv ( double p ) const;             ///< returns the inverse of the cauchy cdf at position x
 		int    getcode ( void ) const { return 4; }///< returns the sigmoid identifier
-        PsiSigmoid * clone ( void ) const {
-            return new PsiCauchy(*this);
-        }
-        static std::string getDescriptor ( void ) {
-            return "cauchy";
-        }
+	PsiSigmoid * clone ( void ) const {
+		return new PsiCauchy(*this);
+	}
+	static std::string getDescriptor ( void ) {
+		return "cauchy";
+	}
 };
 
 /** \brief exponential cdf
@@ -160,19 +164,19 @@ class PsiCauchy : public PsiSigmoid
 class PsiExponential : public PsiSigmoid
 {
 	public:
-        PsiExponential( void ) {}                 ///< constructor
-        PsiExponential( const PsiExponential& oiginal) {} ///< copy constructor
+		PsiExponential( void ) {}                 ///< constructor
+		PsiExponential( const PsiExponential& oiginal) {} ///< copy constructor
 		double f   (double x ) const;              ///< returns the value of the exponential cdf at position x
 		double df  (double x ) const;              ///< returns the derivative of the exponential cdf at position x
 		double ddf (double x ) const;              ///< returns the 2nd derivative of the exponential cdf at position x
 		double inv (double p ) const throw(BadArgumentError);              ///< returns the return the inverse of the exponential cdf at position x
 		int    getcode ( void ) const { return 5; }///< returns the sigmoid identifier
-        PsiSigmoid * clone ( void ) const {
-            return new PsiExponential(*this);
-        }
-        static std::string getDescriptor ( void ) {
-            return "exponential";
-        }
+	PsiSigmoid * clone ( void ) const {
+		return new PsiExponential(*this);
+	}
+	static std::string getDescriptor ( void ) {
+		return "exponential";
+	}
 };
 
 #endif
