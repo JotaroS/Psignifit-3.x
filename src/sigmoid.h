@@ -37,7 +37,7 @@ class PsiId : public PsiSigmoid
 		double df  ( double x ) const { return 1; }
 		double ddf ( double x ) const { return 0; }
 		double inv ( double x ) const { return x; }
-		int getcode ( void ) const { return 6; }
+		int getcode ( void ) const { return 7; }
 	PsiSigmoid * clone ( void ) const {
 		return new PsiId(*this);
 	}
