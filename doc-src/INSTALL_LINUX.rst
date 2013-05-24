@@ -13,7 +13,7 @@ version of Psignifit from a source download.
     configured the NeuroDebian repositories correctly, the following command
     will install Psignifit3 for Python::
 
-        $ sudo apt-get install python-pypsignifit
+        sudo apt-get install python-pypsignifit
 
     This option is the easiest route to getting python-psignifit installed.
 

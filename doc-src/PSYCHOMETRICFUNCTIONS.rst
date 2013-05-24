@@ -57,13 +57,14 @@ Valid sigmoids
 .. image:: sigmoids.png
 
 Six different sigmoids can be selected. All of them correspond to cumulative distributions
-functions.
+functions. A seventh "sigmoid" object, which is the identity function, can also be selected.
 
 logistic
     the logistic function :math:`f(x) = \frac{1}{1+\exp(-x)}`. This sigmoid is symmetric with respect to
     the point (0,0.5).
 gauss
-    the cumulative distribution function of the standard normal distribution. This function
+    the cumulative distribution function of the standard normal distribution, :math:`f(x) = \Phi(x)`.
+    This function
     is symmetric to the point (0,0.5), too. Combined with one of the linear cores, selecting
     this sigmoid roughly corresponds to probit analysis (although typically, the confidence
     intervals will differ).
@@ -87,14 +88,22 @@ exponential
     That is :math:`f(x) = 1-exp(-x)` if :math:`x > 0`, and :math:`f(x) = 0` else. This function is clearly not
     symmetric.
 
+id
+    This is not a sigmoid, but the identity function :math:`f(x) = x`. This is useful if the desired function
+    cannot be separated to the form sigmoid + core, and the whole function has to be implemented in the core
+    object. At the moment this is only useful in conjunction with the NakaRushton core object.
+
+
 Valid cores
 -----------
 
 .. image:: cores.png
 
-There are also six different cores to be selected. The first three are simply linear
-transformations of the stimulus intensities. The remaining three cores are nonlinear
-transformations. Typically, these will be needed to define a weibull function.
+There are six different cores to be selected. The first three are simply linear
+transformations of the stimulus intensities. The last three cores are nonlinear
+transformations. Typically, these will be needed to define a weibull function. A seventh core object,
+the NakaRushton nonlinearity, is not actually a core, but a transformation which cannot be separated
+to the form sigmoid + core. It should only be combined with the id sigmoid.
 
 ab
     the ab-core corresponds to the transformation that transforms an arbitrary normal
@@ -113,7 +122,7 @@ mw
     on the sigmoid. However, in general the mw-core has a form :math:`g(x,m,w) = \frac{z_0}{w} (x-m) + z_1`,
     with :math:`z_0,z_1` derived from the shape of f.
 linear
-    another linear transformation of the input intensity: here, we simply have :math:`g(x,a,b) = a*x+b`.
+    another linear transformation of the input intensity: here, we simply have :math:`g(x,a,b) = a\cdot x + b`.
     Although this is the most direct way to implement an (affine) linear transform of the
     input it is at the same time the least interpretable. Therefore, we recommend to avoid
     this core.
@@ -121,7 +130,7 @@ log
     similar to the linear core but on logarithmic coordinates. This is particularly useful
     for contrast detection data. The weibull function that is commonly used to fit contrast
     detection data is obtained if the gumbel_l sigmoid is used with the log core. The log core
-    is given by :math:`g(x,a,b) = a*log(x)+b`
+    is given by :math:`g(x,a,b) = a\cdot log(x)+b`
 weibull
     the weibull core is at the heart very similar to the log core. However, in contrast to the
     log core, the weibull core uses more meaningful parameters: the first parameter can be
@@ -132,6 +141,13 @@ poly
     While the weibull and the log core perform at the heart a fit on a logarithmic axis, this
     core performs something clearly different: :math:`g(x,a,b) = (x/a)^b`. In combination with a exponential
     sigmoid, this gives the parameterization used in the classical psignifit version.
+
+NakaRushton
+    The Naka-Rushton function cannot be separated into sigmoid + core. Thus, the complete nonlinear function is implemented
+    in the NakaRushton core object. To use the Naka-Rushton function for fitting psychometric data, this core should be
+    combined with an id sigmoid.
+
+
 
 Combining sigmoids and cores
 ----------------------------
@@ -167,7 +183,8 @@ logistic + mw
 ..
 
     where :math:`z(\alpha) = 2\log(1/\alpha -1)`. This allows :math:`m` to be interpreted as the 75% threshold and :math:`w` as the
-    width of the interval in which :math:`F(x;m,w)` rises from :math:`alpha` to :math:`1-alpha`. A typical choice for :math:`alpha` is 0.1.
+    width of the interval in which :math:`F(x;m,w)` rises from :math:`\alpha` to :math:`1-\alpha`. A typical choice for :math:`\alpha` is 0.1.
+
 logistic + linear
     This parameterization corresponds to the classical parameterization used in the literature about
     generalized linear models. Here, the psychometric function is modelled as
@@ -199,6 +216,7 @@ The lgumbel + mw function is parametrized as follows:
 .. math::
 
     F ( x; m, w ) = 1-\exp(-\exp( \frac{z(\alpha)-z(1-\alpha)}{w}  (x-m) + z(0.5) ) ),
+..
 
 where :math:`z(\alpha) = \log(-\log(\alpha))`.
 
@@ -217,6 +235,7 @@ exponential + poly
 ..
 
     which is implemented using the combination of an exponential-sigmoid and a poly-core.
+
 gumbel + weibull
     The Weibull function is equivalent to a Gumbel sigmoid on logarithmic coordinates. Thus,
     [Kuss_et_al_2005]_ suggested a parameterization in terms of the 75% threshold m and the slope
@@ -232,7 +251,7 @@ gumbel + log
 
 .. math::
 
-    F ( x; a, b ) = 1-\exp(-\exp( a\log(x) + b ) ).
+    F ( x; a, b ) = 1-\exp(-\exp( a\cdot \log(x) + b ) ).
 
 
 

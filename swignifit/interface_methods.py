@@ -40,28 +40,41 @@ def bootstrap(data, start=None, nsamples=2000, nafc=2, sigmoid="logistic",
 
     sigmoid : string
         Name of the sigmoid to be fitted. Valid sigmoids include:
-                logistic
-                gauss
-                gumbel_l
-                gumbel_r
+                logistic    (1+exp(-x))**-1 [Default]
+                gauss       Phi(x)
+                gumbel_l    1 - exp(-exp(x))
+                gumbel_r    exp(-exp(-x))
+                exponential x>0: 1 - exp(-x); else: 0
+                cauchy      atan(x)/pi + 0.5
+                id          x; only useful in conjunction with NakaRushton core
         See `swignifit.utility.available_sigmoids()` for all available sigmoids.
 
     core : string
         \"core\"-type of the psychometric function. Valid choices include:
-                ab       (x-a)/b
-                mw%g     midpoint and width
-                linear   a+bx
-                log      a+b log(x)
-        See `swignifit.utility.available_cores()` for all available sigmoids.
+                ab          (x-a)/b [Default]
+                mw%g        midpoint and width, with "%g" a number larger than 0 and less than 0.5. 
+                            mw%g corresponds to a parameterization in terms of midpoint and width of
+                            the rising part of the sigmoid. This width is defined as the length of the
+                            interval on which the sigmoidal part reaches from "%g" to 1-"%g".
+                linear      a+b*x
+                log         a+b*log(x)
+                weibull     2*s*m*(log(x)-log(m))/log(2) + log(log(2)) 
+                            This will give you a weibull if combined with the gumbel_l sigmoid and a
+                            reverse weibull if combined with the gumbel_r sigmoid.
+                poly        (x/a)**b   Will give you a weibull if combined with an exp sigmoid
+                NakaRushton The Naka-Rushton nonlinearity; should only be used with an id core
+        See `swignifit.utility.available_cores()` for all available cores.
 
     priors : sequence of strings length number of parameters
         Constraints on the likelihood estimation. These are expressed in the form of a list of
         prior names. Valid prior choices include:
-                Uniform(%g,%g)
-                Gauss(%g,%g)
-                Beta(%g,%g)
-                Gamma(%g,%g)
-                nGamma(%g,%g)
+                Uniform(%g,%g)   Uniform distribution on an interval
+                Gauss(%g,%g)     Gaussian distribution with mean and standard deviation
+                Beta(%g,%g)      Beta distribution
+                Gamma(%g,%g)     Gamma distribution
+                nGamma(%g,%g)    Gamma distribution on the negative axis
+                invGamma(%g,%g)  inverse Gamma distribution
+                ninvGamma(%g,%g) inverse Gamma distribution on the negative axis
                 if an invalid prior or `None` is selected, no constraints are imposed at all.
         See `swignifit.utility.available_priors()` for all available sigmoids.
 
@@ -223,29 +236,42 @@ def mcmc( data, start=None, nsamples=10000, nafc=2, sigmoid='logistic',
 
     sigmoid : string
         Name of the sigmoid to be fitted. Valid sigmoids include:
-                logistic
-                gauss
-                gumbel_l
-                gumbel_r
+                logistic    (1+exp(-x))**-1 [Default]
+                gauss       Phi(x)
+                gumbel_l    1 - exp(-exp(x))
+                gumbel_r    exp(-exp(-x))
+                exponential x>0: 1 - exp(-x); else: 0
+                cauchy      atan(x)/pi + 0.5
+                id          x; only useful in conjunction with NakaRushton core
         See `swignifit.utility.available_sigmoids()` for all available sigmoids.
 
     core : string
         \"core\"-type of the psychometric function. Valid choices include:
-                ab       (x-a)/b
-                mw%g     midpoint and width
-                linear   a+bx
-                log      a+b log(x)
-        See `swignifit.utility.available_cores()` for all available sigmoids.
+                ab          (x-a)/b [Default]
+                mw%g        midpoint and width, with "%g" a number larger than 0 and less than 0.5. 
+                            mw%g corresponds to a parameterization in terms of midpoint and width of
+                            the rising part of the sigmoid. This width is defined as the length of the
+                            interval on which the sigmoidal part reaches from "%g" to 1-"%g".
+                linear      a+b*x
+                log         a+b*log(x)
+                weibull     2*s*m*(log(x)-log(m))/log(2) + log(log(2)) 
+                            This will give you a weibull if combined with the gumbel_l sigmoid and a
+                            reverse weibull if combined with the gumbel_r sigmoid.
+                poly        (x/a)**b   Will give you a weibull if combined with an exp sigmoid
+                NakaRushton The Naka-Rushton nonlinearity; should only be used with an id core
+        See `swignifit.utility.available_cores()` for all available cores.
 
     priors : sequence of strings length number of parameters
         Prior distributions on the parameters of the psychometric function.
         These are expressed in the form of a list of prior names.
         Valid prior choices include:
-                Uniform(%g,%g)
-                Gauss(%g,%g)
-                Beta(%g,%g)
-                Gamma(%g,%g)
-                nGamma(%g,%g)
+                Uniform(%g,%g)   Uniform distribution on an interval
+                Gauss(%g,%g)     Gaussian distribution with mean and standard deviation
+                Beta(%g,%g)      Beta distribution
+                Gamma(%g,%g)     Gamma distribution
+                nGamma(%g,%g)    Gamma distribution on the negative axis
+                invGamma(%g,%g)  inverse Gamma distribution
+                ninvGamma(%g,%g) inverse Gamma distribution on the negative axis
                 if an invalid prior or `None` is selected, no constraints are imposed at all.
         See `swignifit.utility.available_priors()` for all available sigmoids.
 
@@ -410,29 +436,42 @@ def mapestimate ( data, nafc=2, sigmoid='logistic', core='ab', priors=None,
 
     sigmoid : string
         Name of the sigmoid to be fitted. Valid sigmoids include:
-                logistic
-                gauss
-                gumbel_l
-                gumbel_r
+                logistic    (1+exp(-x))**-1 [Default]
+                gauss       Phi(x)
+                gumbel_l    1 - exp(-exp(x))
+                gumbel_r    exp(-exp(-x))
+                exponential x>0: 1 - exp(-x); else: 0
+                cauchy      atan(x)/pi + 0.5
+                id          x; only useful in conjunction with NakaRushton core
         See `swignifit.utility.available_sigmoids()` for all available sigmoids.
 
     core : string
         \"core\"-type of the psychometric function. Valid choices include:
-                ab       (x-a)/b
-                mw%g     midpoint and width
-                linear   a+bx
-                log      a+b log(x)
-        See `swignifit.utility.available_cores()` for all available sigmoids.
+                ab          (x-a)/b [Default]
+                mw%g        midpoint and width, with "%g" a number larger than 0 and less than 0.5. 
+                            mw%g corresponds to a parameterization in terms of midpoint and width of
+                            the rising part of the sigmoid. This width is defined as the length of the
+                            interval on which the sigmoidal part reaches from "%g" to 1-"%g".
+                linear      a+b*x
+                log         a+b*log(x)
+                weibull     2*s*m*(log(x)-log(m))/log(2) + log(log(2)) 
+                            This will give you a weibull if combined with the gumbel_l sigmoid and a
+                            reverse weibull if combined with the gumbel_r sigmoid.
+                poly        (x/a)**b   Will give you a weibull if combined with an exp sigmoid
+                NakaRushton The Naka-Rushton nonlinearity; should only be used with an id core
+        See `swignifit.utility.available_cores()` for all available cores.
 
     priors : sequence of strings length number of parameters
         Prior distributions on the parameters of the psychometric function.
         These are expressed in the form of a list of prior names.
         Valid prior choices include:
-                Uniform(%g,%g)
-                Gauss(%g,%g)
-                Beta(%g,%g)
-                Gamma(%g,%g)
-                nGamma(%g,%g)
+                Uniform(%g,%g)   Uniform distribution on an interval
+                Gauss(%g,%g)     Gaussian distribution with mean and standard deviation
+                Beta(%g,%g)      Beta distribution
+                Gamma(%g,%g)     Gamma distribution
+                nGamma(%g,%g)    Gamma distribution on the negative axis
+                invGamma(%g,%g)  inverse Gamma distribution
+                ninvGamma(%g,%g) inverse Gamma distribution on the negative axis
                 if an invalid prior or `None` is selected, no constraints are imposed at all.
         See `swignifit.utility.available_priors()` for all available sigmoids.
 
@@ -539,19 +578,30 @@ def diagnostics(data, params, nafc=2, sigmoid='logistic', core='ab', cuts=None, 
 
     sigmoid : string
         Name of the sigmoid to be fitted. Valid sigmoids include:
-                logistic
-                gauss
-                gumbel_l
-                gumbel_r
+                logistic    (1+exp(-x))**-1 [Default]
+                gauss       Phi(x)
+                gumbel_l    1 - exp(-exp(x))
+                gumbel_r    exp(-exp(-x))
+                exponential x>0: 1 - exp(-x); else: 0
+                cauchy      atan(x)/pi + 0.5
+                id          x; only useful in conjunction with NakaRushton core
         See `swignifit.utility.available_sigmoids()` for all available sigmoids.
 
     core : string
         \"core\"-type of the psychometric function. Valid choices include:
-                ab       (x-a)/b
-                mw%g     midpoint and width
-                linear   a+bx
-                log      a+b log(x)
-        See `swignifit.utility.available_cores()` for all available sigmoids.
+                ab          (x-a)/b [Default]
+                mw%g        midpoint and width, with "%g" a number larger than 0 and less than 0.5. 
+                            mw%g corresponds to a parameterization in terms of midpoint and width of
+                            the rising part of the sigmoid. This width is defined as the length of the
+                            interval on which the sigmoidal part reaches from "%g" to 1-"%g".
+                linear      a+b*x
+                log         a+b*log(x)
+                weibull     2*s*m*(log(x)-log(m))/log(2) + log(log(2)) 
+                            This will give you a weibull if combined with the gumbel_l sigmoid and a
+                            reverse weibull if combined with the gumbel_r sigmoid.
+                poly        (x/a)**b   Will give you a weibull if combined with an exp sigmoid
+                NakaRushton The Naka-Rushton nonlinearity; should only be used with an id core
+        See `swignifit.utility.available_cores()` for all available cores.
 
     cuts : sequence of floats
         Cuts at which thresholds should be determined.  That is if cuts =

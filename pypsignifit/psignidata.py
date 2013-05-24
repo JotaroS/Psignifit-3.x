@@ -200,20 +200,27 @@ class BootstrapInference ( PsiInference ):
                 integer, it gives the number of samples that are drawn
             *sigmoid* :
                 shape of the sigmoid function. Valid choices are
-                    - 'logistic'   [Default]
-                    - 'gauss'
-                    - 'gumbel_l'
-                    - 'gumbel_r'
-                    - 'exp'
+                    - 'logistic'    (1+exp(-x))**-1 [Default]
+                    - 'gauss'       Phi(x)
+                    - 'gumbel_l'    1 - exp(-exp(x))
+                    - 'gumbel_r'    exp(-exp(-x))
+                    - 'exponential' x>0: 1 - exp(-x); else: 0
+                    - 'cauchy'      atan(x)/pi + 0.5
+                    - 'id'          x; only useful in conjunction with NakaRushton core
             *core* :
                 term inside the sigmoid function. Valid choices are
-                    - 'ab'         (x-a)/b        [Default]
-                    - 'mw%g'       midpoint and width
-                    - 'linear'     a+b*x
-                    - 'log'        a+b*log(x)
-                    - 'weibull'    2*s*m*(log(x)-log(m))/log(2) + log(log(2))    This will give you a weibull if combined with
-                      the gumbel_l sigmoid and a reverse weibull if combined with the gumbel_r sigmoid.
-                    - 'poly'       (x/a)**b   Will give you a weibull if combined with an exp sigmoid
+                    - 'ab'          (x-a)/b [Default]
+                    - 'mw%g'        midpoint and width, with "%g" a number larger than 0 and less than 0.5. 
+                                    mw%g corresponds to a parameterization in terms of midpoint and width of
+                                    the rising part of the sigmoid. This width is defined as the length of the
+                                    interval on which the sigmoidal part reaches from "%g" to 1-"%g".
+                    - 'linear'      a+b*x
+                    - 'log'         a+b*log(x)
+                    - 'weibull'     2*s*m*(log(x)-log(m))/log(2) + log(log(2))
+                                    This will give you a weibull if combined with the gumbel_l  sigmoid and a
+                                    reverse weibull if combined with the gumbel_r sigmoid.
+                    - 'poly'        (x/a)**b   Will give you a weibull if combined with an exp sigmoid
+                    - 'NakaRushton' The Naka-Rushton nonlinearity; should only be used with an id core
             *priors* :
                 a list of prior names. Valid choices are
                     - 'Uniform(%g,%g)'   Uniform distribution on an interval
@@ -221,6 +228,8 @@ class BootstrapInference ( PsiInference ):
                     - 'Beta(%g,%g)'      Beta distribution
                     - 'Gamma(%g,%g)'     Gamma distribution
                     - 'nGamma(%g,%g)'    Gamma distribution on the negative axis
+                    - 'invGamma(%g,%g)'  inverse Gamma distribution
+                    - 'ninvGamma(%g,%g)' inverse Gamma distribution on the negative axis
                 If no valid prior is selected, the parameter remains unconstrained.
                 Alternatively, priors can be given as a dictionary that only specifies
                 priors for those parameters you want to set in that case you can use
@@ -651,20 +660,27 @@ class BayesInference ( PsiInference ):
                 integer, it gives the number of samples that are drawn
             *sigmoid* :
                 shape of the sigmoid function. Valid choices are
-                    - 'logistic'   [Default]
-                    - 'gauss'
-                    - 'gumbel_l'
-                    - 'gumbel_r'
-                    - 'exp'
+                    - 'logistic'    (1+exp(-x))**-1 [Default]
+                    - 'gauss'       Phi(x)
+                    - 'gumbel_l'    1 - exp(-exp(x))
+                    - 'gumbel_r'    exp(-exp(-x))
+                    - 'exponential' x>0: 1 - exp(-x); else: 0
+                    - 'cauchy'      atan(x)/pi + 0.5
+                    - 'id'          x; only useful in conjunction with NakaRushton core
             *core* :
                 term inside the sigmoid function. Valid choices are
-                    - 'ab'         (x-a)/b        [Default]
-                    - 'mw%g'       midpoint and width
-                    - 'linear'     a+b*x
-                    - 'log'        a+b*log(x)
-                    - 'weibull'    2*s*m*(log(x)-log(m))/log(2) + log(log(2))    This will give you a weibull if combined with
-                      the gumbel_l sigmoid and a reverse weibull if combined with the gumbel_r sigmoid.
-                    - 'poly'       (x/a)**b   Will give you a weibull if combined with an exp sigmoid
+                    - 'ab'          (x-a)/b [Default]
+                    - 'mw%g'        midpoint and width, with "%g" a number larger than 0 and less than 0.5. 
+                                    mw%g corresponds to a parameterization in terms of midpoint and width of
+                                    the rising part of the sigmoid. This width is defined as the length of the
+                                    interval on which the sigmoidal part reaches from "%g" to 1-"%g".
+                    - 'linear'      a+b*x
+                    - 'log'         a+b*log(x)
+                    - 'weibull'     2*s*m*(log(x)-log(m))/log(2) + log(log(2))
+                                    This will give you a weibull if combined with the gumbel_l  sigmoid and a
+                                    reverse weibull if combined with the gumbel_r sigmoid.
+                    - 'poly'        (x/a)**b   Will give you a weibull if combined with an exp sigmoid
+                    - 'NakaRushton' The Naka-Rushton nonlinearity; should only be used with an id core
             *priors* :
                 a list of prior names. Valid choices are
                     - 'Uniform(%g,%g)'   Uniform distribution on an interval
@@ -672,6 +688,8 @@ class BayesInference ( PsiInference ):
                     - 'Beta(%g,%g)'      Beta distribution
                     - 'Gamma(%g,%g)'     Gamma distribution
                     - 'nGamma(%g,%g)'    Gamma distribution on the negative axis
+                    - 'invGamma(%g,%g)'  inverse Gamma distribution
+                    - 'ninvGamma(%g,%g)' inverse Gamma distribution on the negative axis
                 If no valid prior is selected, the parameter remains unconstrained.
                 Alternatively, priors can be given as a dictionary that only specifies
                 priors for those parameters you want to set in that case you can use

@@ -3,23 +3,24 @@ Mac OSX
 
 This is the installation instruction for the Python version, not the Matlab version.
 
-The easiest way to use psignifit is to use the `Enthought Python Distribution <http://www.enthought.com/products/epd.php>`_.
+The easiest way to use psignifit is to use the `Enthought Python Distribution <http://www.enthought.com/products/epd/>`_ (EPD)
+or `Enthought Canopy <http://www.enthought.com/products/canopy/>`_.
 
 You will also need gcc. You can check whether your machine already has gcc installed by typing::
 
->>> which gcc
+    which gcc
 
 If this gives you the output::
 
-	gcc not found
+    -bash: gcc: command not found
 
-you have to download gcc through the Apple Developer Tools. Register for a  developer account (you can use your normal apple account for this and it's free, you don't have to join the developer program) which will allow you to access the developer tools where you want to download Xcode (this is a very large file but as far as we know is the only way of downloading gcc) at the time of writing Xcode 3 is free (and has everything you need) so there is no need to pay for Xcode 4. If you are not running Snow Leopard, you will have to find an older version of Xcode such as 3.1.
+(or similar), you have to download gcc through the Apple Developer Tools. Register for a  developer account (you can use your normal apple account for this and it's free, you don't have to join the developer program) which will allow you to access the developer tools where you want to download Xcode (this is a very large file but as far as we know is the only way of downloading gcc) at the time of writing Xcode 3 is free (and has everything you need) so there is no need to pay for Xcode 4. If you are not running Snow Leopard, you will have to find an older version of Xcode such as 3.1.
 
-For OSX Lion Xcode 4 is free, too. Further information can be found `here <http://jessenoller.com/2011/07/30/quick-pythondeveloper-tips-for-osx-lion/>`.
+For OS X Lion (10.7) and above, Xcode 4 is free, too. Further information can be found `here <http://jessenoller.com/2011/07/30/quick-pythondeveloper-tips-for-osx-lion/>`_.
 
 You will want to download the most recent version of psignifit from:
-`<http://sourceforge.net/.projects/psignifit/files/>`_. You will want the
-``zip`` file, for example ``psignifit_3.0_beta.20120207.1.zip``.
+`<http://sourceforge.net/projects/psignifit/files/>`_. You will want the
+``zip`` file, for example ``psignifit_3.0_beta.20120611.1.zip``.
 
 Extract the file, and enter the directory by typing::
 
@@ -33,7 +34,7 @@ Now simply run::
 
     make install
 
-Open a Python interpreter and type::
+Open a Python interpreter (e.g. ``ipython``) and type::
 
     import pypsignifit
     pypsignifit.version
