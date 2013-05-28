@@ -15,7 +15,7 @@ version of Psignifit from a source download.
 
     .. code-block:: console
 
-        $ sudo apt-get install python-pypsignifit
+        sudo apt-get install python-pypsignifit
 
     This option is the easiest route to getting python-psignifit installed.
 

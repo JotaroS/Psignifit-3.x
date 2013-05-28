@@ -17,8 +17,8 @@ If you have *not already downloaded* the sources during the installation of the
 Command Line Interface:
 
 You will want to download the most recent version of psignifit from:
-`<http://sourceforge.net/.projects/psignifit/files/>`_. You will want the
-``zip`` file, for example ``psignifit3.0_beta_28-10-2011.zip``.
+`<http://sourceforge.net/projects/psignifit/files/>`_. You will want the
+``zip`` file, for example ``psignifit3.0_beta_20120611.1.zip``.
 
 Extract the file, and enter the directory by typing:
 

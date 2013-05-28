@@ -3,7 +3,9 @@ Windows
 
 This is the installation instruction for the Python version, not the Matlab version.
 
-The easiest way to use Psignifit is to use the `Enthought Python Distribution <http://www.enthought.com/products/epd.php>`_.
+The easiest way to use psignifit is to use the `Enthought Python Distribution <http://www.enthought.com/products/epd/>`_ (EPD)
+or `Enthought Canopy <http://www.enthought.com/products/canopy/>`_.
+
 In that case, you might want to download Psignifit from
 
 `Psignifit3 Downloads <http://sourceforge.net/projects/psignifit/files/>`_
