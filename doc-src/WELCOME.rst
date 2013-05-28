@@ -88,6 +88,7 @@ We are very grateful to the following people, who have contributed to Psignifit3
 * Simon Barthelmé
 * Hannah Dold
 * Sophie Herbst
+* Richard Höchenberger
 * Jeremy Hill
 * Marianne Maertens
 * Manuel Spitschan
