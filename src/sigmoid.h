@@ -19,8 +19,8 @@ class PsiSigmoid
 		virtual double ddf ( double x ) const { throw NotImplementedError(); }            ///< This should give the second derivative of the sigmoid
 		virtual double inv ( double p ) const { throw NotImplementedError(); }            ///< This should give the inverse of the sigmoid (taking values between 0 and 1)
 		virtual int    getcode ( void ) const { throw NotImplementedError(); }            ///< return the sigmoid identifier
-        virtual PsiSigmoid * clone ( void ) const { throw NotImplementedError(); }                ///< clone object by value
-        static std::string getDescriptor ( void ) { throw NotImplementedError(); }///< get a short string that identifies the type of sigmoid
+		virtual PsiSigmoid * clone ( void ) const { throw NotImplementedError(); }				  ///< clone object by value
+		static std::string getDescriptor ( void ) { throw NotImplementedError(); }///< get a short string that identifies the type of sigmoid
 };
 
 /** \brief identity function as sigmoid
