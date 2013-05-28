@@ -53,7 +53,7 @@ Now simply run:
 
     $ make install
 
-Open a Python interpreter (e.g. ``ipython``) and type::
+Open a Python interpreter (e.g. ``ipython``) and type:
 
 .. code-block:: pycon
 
