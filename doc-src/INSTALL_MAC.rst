@@ -91,7 +91,7 @@ to add it.  To do so, add:
 
 .. code-block:: sh
 
-    export PATH=$PATH:$HOME/bin
+    $ export PATH=$PATH:$HOME/bin
 
 to your ``.bashrc`` (if you use bash). If you use zsh, the same line should be
 in your ``.zshrc.local`` file.
