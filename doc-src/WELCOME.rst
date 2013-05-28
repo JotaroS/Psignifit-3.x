@@ -84,13 +84,15 @@ The Psignifit3 core development team currently consists of:
 
 We are very grateful to the following people, who have contributed to Psignifit3:
 
-* Alexander Ecker
+* Brad Buran
 * Simon Barthelmé
 * Hannah Dold
+* Alexander Ecker
 * Sophie Herbst
 * Richard Höchenberger
 * Jeremy Hill
 * Marianne Maertens
+* Nico Schmidt
 * Manuel Spitschan
 * Felix Wichmann
 * Katharina Maria Zeiner
