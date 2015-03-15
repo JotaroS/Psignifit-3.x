@@ -401,9 +401,9 @@ def plotPMF ( InferenceObject, xlabel_text="Stimulus intensity", ylabel_text=Non
     >>> d1 = [[0, 22, 50], [2, 34, 50], [4, 31, 50], [6, 42, 50], [8, 42, 50], [10, 46, 50]]
     >>> d2 = [[0, 26, 50], [2, 31, 50], [4, 38, 50], [6, 47, 50], [8, 49, 50], [10, 49, 50]]
     >>> constraints = ("","","Uniform(0,.1)")
-    >>> B0 = BootstrapInference ( d0, priors=constraints, plotting={'color': 'r'} )
-    >>> B1 = BootstrapInference ( d1, priors=constraints, plotting={'color': 'b'} )
-    >>> B2 = BootstrapInference ( d2, priors=constraints, plotting={'color': 'k'} )
+    >>> B0 = BootstrapInference ( d0, priors=constraints, plotprm={'color': 'r'} )
+    >>> B1 = BootstrapInference ( d1, priors=constraints, plotprm={'color': 'b'} )
+    >>> B2 = BootstrapInference ( d2, priors=constraints, plotprm={'color': 'k'} )
     >>> plotPMF ( B0, showaxes=False )
     >>> plotPMF ( B1, showaxes=False )
     >>> plotPMF ( B2, showaxes=True  )
