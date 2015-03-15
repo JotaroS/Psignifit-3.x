@@ -1008,7 +1008,7 @@ def plotMultiplePMFs ( *InferenceObjects, **kwargs ):
     >>> d1 = [[0, 22, 50], [2, 34, 50], [4, 31, 50], [6, 42, 50], [8, 42, 50], [10, 46, 50]]
     >>> d2 = [[0, 26, 50], [2, 31, 50], [4, 38, 50], [6, 47, 50], [8, 49, 50], [10, 49, 50]]
     >>> constraints = ("","","Uniform(0,.1)")
-    >>> B0 = BootstrapInference ( d0, priors=constraints,plotprm={"color": "r", "label": "Condition 0"} )
+    >>> B0 = BootstrapInference ( d0, priors=constraints, plotprm={"color": "r", "label": "Condition 0"} )
     >>> B1 = BootstrapInference ( d1, priors=constraints, plotprm={"color": "b","label": "Condition 1"} )
     >>> B2 = BootstrapInference ( d2, priors=constraints, plotprm={"color": "b","label": "Condition 2"} )
     >>> plotMultiplePMFs ( B0, B1, B2 )
